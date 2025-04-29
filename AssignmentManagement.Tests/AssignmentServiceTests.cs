@@ -40,5 +40,21 @@
             Assert.NotNull(result);
             Assert.Equal("Test Title", result.Title);
         }
+
+        [Fact]
+        public void MarkAssignmentComplete_ShouldMarkAssignmentAsCompleted()
+        {
+            // Arrange
+            var service = new AssignmentService();
+            var assignment = new Assignment("Test Title", "Test Description");
+            service.AddAssignment(assignment);
+
+            // Act
+            var result = service.MarkAssignmentComplete("Test Title");
+
+            // Assert
+            Assert.True(result);
+            Assert.True(assignment.IsCompleted);
+        }
     }
 }

@@ -35,10 +35,15 @@ namespace AssignmentManagement.Core
             return _assignments.FirstOrDefault(a =>
                 a.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
         }
-        // TODO: Implement method to mark an assignment complete
+        // TODO(Complete with Provided Code): Implement method to mark an assignment complete
         public bool MarkAssignmentComplete(string title)
         {
-            throw new NotImplementedException();
+            var assignment = FindAssignmentByTitle(title);
+            if (assignment == null)
+                return false;
+
+            assignment.MarkComplete();
+            return true;
         }
 
         // TODO: Implement method to delete an assignment by title
