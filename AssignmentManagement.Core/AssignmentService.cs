@@ -46,10 +46,15 @@ namespace AssignmentManagement.Core
             return true;
         }
 
-        // TODO: Implement method to delete an assignment by title
+        // TODO(Complete with Provided Code): Implement method to delete an assignment by title
         public bool DeleteAssignment(string title)
         {
-            throw new NotImplementedException();
+            var assignment = FindAssignmentByTitle(title);
+            if (assignment == null)
+                return false;
+
+            _assignments.Remove(assignment);
+            return true;
         }
 
         // TODO: Implement method to update an assignment (title and description)

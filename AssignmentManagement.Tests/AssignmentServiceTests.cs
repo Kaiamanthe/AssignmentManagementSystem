@@ -56,5 +56,21 @@
             Assert.True(result);
             Assert.True(assignment.IsCompleted);
         }
+
+        [Fact]
+        public void DeleteAssignment_ShouldRemoveAssignment()
+        {
+            // Arrange
+            var service = new AssignmentService();
+            var assignment = new Assignment("Test Title", "Test Description");
+            service.AddAssignment(assignment);
+
+            // Act
+            var result = service.DeleteAssignment("Test Title");
+
+            // Assert
+            Assert.True(result);
+            Assert.Null(service.FindAssignmentByTitle("Test Title"));
+        }
     }
 }
