@@ -57,10 +57,21 @@ namespace AssignmentManagement.Core
             return true;
         }
 
-        // TODO: Implement method to update an assignment (title and description)
+        // TODO(Complete with Provided Code): Implement method to update an assignment (title and description)
         public bool UpdateAssignment(string oldTitle, string newTitle, string newDescription)
         {
-            throw new NotImplementedException();
+            var assignment = FindAssignmentByTitle(oldTitle);
+            if (assignment == null)
+                return false;
+
+            if (!oldTitle.Equals(newTitle, StringComparison.OrdinalIgnoreCase) &&
+                _assignments.Any(a => a.Title.Equals(newTitle, StringComparison.OrdinalIgnoreCase)))
+            {
+                return false; // Conflict
+            }
+
+            assignment.Update(newTitle, newDescription);
+            return true;
         }
     }
 }

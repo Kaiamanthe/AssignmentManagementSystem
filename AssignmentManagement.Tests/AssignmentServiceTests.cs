@@ -72,5 +72,21 @@
             Assert.True(result);
             Assert.Null(service.FindAssignmentByTitle("Test Title"));
         }
+
+        [Fact]
+        public void UpdateAssignment_ShouldChangeTitleAndDescription()
+        {
+            // Arrange
+            var service = new AssignmentService();
+            var assignment = new Assignment("Old Title", "Old Description");
+            service.AddAssignment(assignment);
+
+            // Act
+            assignment.Update("New Title", "New Description");
+
+            // Assert
+            Assert.Equal("New Title", assignment.Title);
+            Assert.Equal("New Description", assignment.Description);
+        }
     }
 }
