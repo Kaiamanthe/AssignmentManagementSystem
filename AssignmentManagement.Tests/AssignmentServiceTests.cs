@@ -24,5 +24,21 @@
             Assert.Single(result);
             Assert.Equal("Incomplete Task", result[0].Title);
         }
+
+        [Fact]
+        public void FindAssignmentByTitle_ShouldReturnCorrectAssignment()
+        {
+            // Arrange
+            var service = new AssignmentService();
+            var assignment = new Assignment("Test Title", "Test Description");
+            service.AddAssignment(assignment);
+
+            // Act
+            var result = service.FindAssignmentByTitle("Test Title");
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal("Test Title", result.Title);
+        }
     }
 }

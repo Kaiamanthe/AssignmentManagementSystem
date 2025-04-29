@@ -29,12 +29,12 @@ namespace AssignmentManagement.Core
             return _assignments.Where(a => !a.IsCompleted).ToList();
         }
 
-        // TODO: Implement method to find an assignment by title
+        // TODO(Complete with Provided Code): Implement method to find an assignment by title
         public Assignment FindAssignmentByTitle(string title)
         {
-            throw new NotImplementedException();
+            return _assignments.FirstOrDefault(a =>
+                a.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
         }
-
         // TODO: Implement method to mark an assignment complete
         public bool MarkAssignmentComplete(string title)
         {
